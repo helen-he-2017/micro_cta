@@ -6,3 +6,5 @@ Dissecting Investment Strategies in the Cross Section and Time Series (December 
 Available at SSRN: https://ssrn.com/abstract=2695101 or http://dx.doi.org/10.2139/ssrn.2695101
 
 To construct a suitable Python environment (with Pandas and Matplotlib) run build.sh
+
+![Alt text](PL.png)
