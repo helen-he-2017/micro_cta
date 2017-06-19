@@ -17,8 +17,7 @@ class Portfolio(object):
 
 
 if __name__ == '__main__':
-    fut = pd.read_csv("data/prices.csv", index_col=0, parse_dates=True).ffill().truncate(
-        before=pd.Timestamp("1990-01-01"))
+    fut = pd.read_csv("data/prices.csv", index_col=0, parse_dates=True).ffill().truncate(before=pd.Timestamp("1990-01-01"))
     # compute volatility adjusted returns and winsorize them
     volatility = fut.pct_change().ewm(com=32).std()
     volAdjReturns = (fut.pct_change() / volatility).clip(-4.2, 4.2)
