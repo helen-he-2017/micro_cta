@@ -1,9 +1,10 @@
+# Here we reproduce the results of the 10 line script
+
 import pandas as pd
 import numpy as np
 
 import matplotlib.pyplot as plt
 
-from pycta.performance.month import monthlytable
 from pycta.signal import osc, volatility, volatility_adj_returns
 from pycta.portfolio import Portfolio
 
@@ -22,8 +23,13 @@ if __name__ == '__main__':
 
     p = Portfolio(prices=fut, cashPos=(50000 * np.tanh(osc(prices, fast=16, slow=48)) / vola).clip(-5e5, 5e5))
 
-    # simulate the compounding over time
+    # plot results
+    plt.figure()
     p.nav.plot(logy=True, grid=True)
-    plt.savefig('P2L.png')
+    plt.savefig('pl.png')
 
-    print((100*monthlytable(p.nav)).to_string(float_format='{:,.2f}'.format))
+    plt.figure()
+    p.drawdown.plot(grid=True)
+    plt.savefig('drawdown.png')
+
+    print(p.monthly.to_string(float_format='{:,.2f}'.format, na_rep=''))
