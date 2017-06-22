@@ -1,5 +1,4 @@
-from pycta.performance.drawdown import drawdown
-from pycta.performance.month import monthlytable
+from pycta.performance.nav_series import NavSeries
 
 
 class Portfolio(object):
@@ -11,12 +10,4 @@ class Portfolio(object):
 
     @property
     def nav(self):
-        return self.__nav
-
-    @property
-    def drawdown(self):
-        return 100*drawdown(self.__nav)
-
-    @property
-    def monthly(self):
-        return 100*monthlytable(self.__nav)
+        return NavSeries(self.__nav)
