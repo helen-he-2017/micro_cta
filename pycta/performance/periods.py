@@ -42,9 +42,6 @@ def period_returns(returns, offset=None):
     def __cumreturn(ts):
         return (ts + 1.0).prod() - 1.0
 
-    if not isinstance(offset, pd.Series):
-        offset = periods()
-
     assert isinstance(returns.index[0], pd.Timestamp)
     p_returns = {key: __cumreturn(returns.truncate(before=period.start, after=period.end)) for key, period in offset.iteritems()}
 
