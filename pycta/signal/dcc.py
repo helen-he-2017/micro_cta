@@ -4,7 +4,7 @@ class DCC(object):
         x = volAdjReturns.ewm(com=com, min_periods=min_periods).corr().dropna(how="all", axis=0)
         self.__matrices = {t : x.loc[t].dropna(how="all", axis=1) for t in x.index.get_level_values(level=0).unique()}
 
-    def keys(self):
+    def times(self):
         return self.__matrices.keys()
 
     def __getitem__(self, item):
@@ -13,3 +13,6 @@ class DCC(object):
     def items(self):
         for time, matrix in self.__matrices.items():
             yield time, matrix
+
+    def __repr__(self):
+        return "Dynamic Conditional Correlations (DCC) starting at {0}".format(min(self.times()))

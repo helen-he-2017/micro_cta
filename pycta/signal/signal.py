@@ -15,14 +15,10 @@ def oscillator(prices, fast=32, slow=96):
 
 
 def volatility(prices, com=32, min_periods=0):
-    return prices.pct_change().ewm(com=com, min_periods=min_periods).std()
+    return np.log(prices).diff().ewm(com=com, min_periods=min_periods).std()
 
 
 def volatility_adj_returns(prices, volatility, winsor=4.2):
-    return (prices.pct_change() / volatility).clip(-winsor, winsor)
-
-
-def returns2prices(returns):
-    return (1 + returns/100).cumprod()
+    return (np.log(prices).diff() / volatility).clip(-winsor, winsor)
 
 
