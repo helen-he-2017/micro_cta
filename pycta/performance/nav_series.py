@@ -9,16 +9,6 @@ from .periods import period_returns, periods
 from .var import value_at_risk, conditional_value_at_risk
 
 
-def fromReturns(r):
-    return NavSeries((1 + r).cumprod().dropna()).adjust(value=1.0)
-
-def fromNav(ts):
-    return NavSeries(ts).adjust(value=1.0)
-
-def performance(nav, alpha=0.95, periods=None):
-    return NavSeries(nav).summary(alpha=alpha, periods=periods)
-
-
 class NavSeries(pd.Series):
     def __init__(self, *args, **kwargs):
         super(NavSeries, self).__init__(*args, **kwargs)
