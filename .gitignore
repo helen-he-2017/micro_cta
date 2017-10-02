@@ -2,3 +2,4 @@ prices.csv
 env
 .idea
 .idea/*
+__pycache__*
