@@ -1,7 +1,7 @@
 from unittest import TestCase
 import pandas as pd
 
-from pycta.performance.nav_series import NavSeries, performance
+from pycta.performance.nav_series import NavSeries
 from test.config import read_series
 
 import pandas.util.testing as pdt
@@ -33,10 +33,6 @@ class TestNavSeries(TestCase):
         self.assertAlmostEqual(100 * s.ewm_volatility(periods=250).values[-1], 2.7714298334400818, places=6)
         self.assertAlmostEqual(100 * s.ewm_ret(periods=250).values[-1], 6.0365130705403685, places=6)
         self.assertAlmostEqual(s.ewm_sharpe(periods=250).values[-1], 2.1781222810347862, places=6)
-
-    def test_performance(self):
-        result = performance(s)
-        self.assertAlmostEqual(result["Max Drawdown"], 3.9885756705666631, places=10)
 
     def test_fee(self):
         x = s.fee(0.5)

@@ -6,6 +6,7 @@ from pycta.signal.dcc import DCC
 from test.config import read_frame
 from pycta.signal.signal import volatility_adj_returns, volatility
 
+
 class TestDCC(TestCase):
     def test_dcc(self):
         frame = read_frame(name="price_data.csv")
